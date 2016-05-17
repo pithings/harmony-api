@@ -63,8 +63,8 @@ Launch the app via `script/server` to run it in the development environment.
 
 ## MQTT Docs
 
-harmony-api can report its state changes to your MQTT broker. Just edit your
-config file in `config/config.json` to add your MQTT host.
+harmony-api can report its state changes to your MQTT broker. Just add your
+config file in `/etc/opt/harmony-api/config.json` to add your MQTT host.
 
 harmony-api publishes topics with the namespace of: `harmony-api`.
 

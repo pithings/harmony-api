@@ -7,7 +7,13 @@ var morgan = require('morgan')
 var bodyParser = require('body-parser')
 var parameterize = require('parameterize');
 
-var config = require('./config/config.json');
+var config
+try {
+  config = require('/etc/opt/harmony-api/config.json');
+} catch (e) {
+  console.error('Error when loading /etc/opt/harmony-api/config.json, using defaults');
+  config = { "mqtt_host": "http://127.0.0.1" }
+}
 
 var harmonyHubDiscover = require('harmonyhubjs-discover')
 var harmony = require('harmonyhubjs-client')
@@ -125,7 +131,6 @@ function updateActivities(){
 
 function updateState(){
   if (!harmonyHubClient) { return }
-  console.log('Updating state.')
 
   // save for comparing later after we get the true current state
   var previousActivity = currentActivity()
